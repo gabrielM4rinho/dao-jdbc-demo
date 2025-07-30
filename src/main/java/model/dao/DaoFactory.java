@@ -1,5 +1,6 @@
 package model.dao;
 
+import conn.Db;
 import model.dao.impl.SellerDaoJDBC;
 
 public class DaoFactory {
@@ -10,6 +11,6 @@ public class DaoFactory {
         o programa não conhece a implementação, apenas a interface
      */
     public static SellerDao createSellerDao(){
-        return new SellerDaoJDBC();
+        return new SellerDaoJDBC(Db.getConnection());
     }
 }
