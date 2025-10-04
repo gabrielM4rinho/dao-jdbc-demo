@@ -4,10 +4,14 @@ import model.dao.DaoFactory;
 import model.dao.DepartmentDao;
 import model.entities.Department;
 
+import java.util.List;
+import java.util.Scanner;
+
 public class Program2 {
     public static void main(String[] args) {
 
         DepartmentDao departmentDao = DaoFactory.createDepartmentDao();
+        Scanner sc = new Scanner(System.in);
 
         System.out.println("=== Teste 1: Department Insert===");
         Department newDepartment = new Department(null, "Tools");
@@ -24,6 +28,18 @@ public class Program2 {
         departmentDao.update(department);
         System.out.println("Update completed");
 
+        System.out.println("\n=== Teste 4: Department Delete===");
+        System.out.print("Enter ID for delete test: ");
+        int id = sc.nextInt();
+        departmentDao.deleteById(id);
+        System.out.println("Delete complete");
+        sc.close();
+
+        System.out.println("\n=== Teste 5: findAll===");
+        List<Department> list = departmentDao.findAll();
+        for (Department obj : list){
+            System.out.println(obj);
+        }
 
     }
 }
